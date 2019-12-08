@@ -16,8 +16,8 @@
 
 Auth::routes();
 Route::get('/', function() {
-    return view('home');
-})->name('home')->middleware('auth');
+    return view('open');
+})->name('open')->middleware('auth');
 
 
 
