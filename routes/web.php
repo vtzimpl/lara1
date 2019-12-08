@@ -19,3 +19,7 @@ Route::get('/', function () {
 Route::get('/newproject', function () {
     return view('newproject');
 });
+
+Route::get('/open', function () {
+    return view('open');
+});
