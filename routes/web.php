@@ -11,15 +11,32 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 
-Route::get('/newproject', function () {
+
+Auth::routes();
+Route::get('/', function() {
+    return view('home');
+})->name('home')->middleware('auth');
+
+
+
+Auth::routes();
+Route::get('/newproject', function() {
     return view('newproject');
-});
+})->name('newproject')->middleware('auth');
 
-Route::get('/open', function () {
+
+
+Auth::routes();
+Route::get('/open', function() {
     return view('open');
-});
+})->name('open')->middleware('auth');
+
+
+
+
+
+
+
+
