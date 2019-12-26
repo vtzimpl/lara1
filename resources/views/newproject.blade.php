@@ -17,20 +17,45 @@
 
 
 
-<div class="accordion" id="accordionExample">
+
+<div class="container" style="padding-bottom:1%">
+
+<div class="row">
+<img src="http://fd-motors.nl/wp-content/uploads/2019/11/2fdmodelsv2-2.gif" class="rounded mx-auto d-block" alt="...">
+
+</div>
+<div class="row">
+<div class="form-group">
+    <label for="exampleFormControlFile1">Example file input</label>
+    <input type="file" class="form-control-file" id="exampleFormControlFile1">
+  </div>
+
+  </div>
+
+</div>
 
 
 
-  <div class="card">
-    <div class="card-header" id="headingOne">
-      <h2 class="mb-0">
-        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-          General
-        </button>
-      </h2>
-    </div>
 
-    <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+
+
+
+
+
+
+
+
+<div class="accordion" id="accordionproject">
+        <div class="card">
+          <div class="card-header" id="generalheader">
+            <h2 class="mb-0">
+              <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                General
+              </button>
+            </h2>
+          </div>
+
+    <div id="collapseOne" class="collapse show" aria-labelledby="generalheader" data-parent="#accordionproject">
       <div class="card-body">
        
 
@@ -110,7 +135,7 @@
         </button>
       </h2>
     </div>
-    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+    <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionproject">
       <div class="card-body">
         ...............................
       </div>
@@ -127,7 +152,7 @@
         </button>
       </h2>
     </div>
-    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+    <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionproject">
       <div class="card-body">
        ..................................................
       </div>
@@ -146,7 +171,7 @@
       </h2>
     </div>
 
-    <div id="collapseFour" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+    <div id="collapseFour" class="collapse" aria-labelledby="generalheader" data-parent="#accordionproject">
       <div class="card-body">
         ..........................................
       </div>

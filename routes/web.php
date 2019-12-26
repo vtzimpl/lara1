@@ -31,12 +31,12 @@ Route::get('/newproject', function() {
 Auth::routes();
 Route::get('/open', function() {
     return view('open');
-})->name('open')->middleware('auth');
+})->name('open2S')->middleware('auth');
 
 
 
 
-
+Route::get('/submit', 'ProjElementsController@imagevalidation')->name('submition')->middleware('auth');
 
 
 

@@ -16,15 +16,16 @@ class CreateProjectsTable extends Migration
         Schema::create('projects', function (Blueprint $table) {
         $table->bigIncrements('id');
         $table->timestamps();
-        $table->char('projnbr', 100); //NUMBER
-        $table->string('projname');//NAME
-        $table->char('projtype', 20); //TYPE
-        $table->char('projstatus', 100); //STATUS
-        $table->char('projmaker', 100); //MAKER
-        $table->text('projdoc'); //DOCUMENTS PATH
-        $table->longText('projcomments');//COMMENTS
+        $table->text('projimage')->nullable(); //IMAGE
+        $table->char('projnbr', 100)->nullable(); //NUMBER
+        $table->string('projname')->nullable();//NAME
+        $table->char('projtype', 20)->nullable(); //TYPE
+        $table->char('projstatus', 100)->nullable(); //STATUS
+        $table->char('projmaker', 100)->nullable(); //MAKER
+        $table->text('projdoc')->nullable(); //DOCUMENTS PATH
+        $table->longText('projcomments')->nullable();//COMMENTS
 
-
+        
 
         });
     }
