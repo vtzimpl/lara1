@@ -192,6 +192,7 @@ return [
 
         [
             'text'       => 'All',
+            'url'  => '/project',
             'icon_color' => 'white',
         ],
 
