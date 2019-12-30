@@ -5,12 +5,29 @@
     <h1>New Project</h1>
 @stop
 @section('content')
+
+
+{{-- flash messages --}}
+@if (session()->has('status'))
+<div class="alert alert-success" role="alert">
+  {{session()->get('status')}}
+ </div>
+
+@else
+
 <div class="alert alert-primary" role="alert">
- New Nipponia Project
-</div>
+  New Nipponia Project
+ </div>
 
-<form>
+@endif
+{{-- flash messages --}}
 
+
+
+
+
+<form method="POST" action="{{route('project.store')}}"> {{--method="POST" action="{{route(Projects.store)}}"--}}
+@csrf
   <div class="container" style="padding-bottom:1%">
 
     <div class="row">
@@ -23,9 +40,9 @@
 
       <div class="form-group">
 
-        <label for="browseforfile">Upload image</label>
+        <label for="projimage">Upload image</label>
 
-        <input type="file" class="form-control-file" id="browseforfile">
+        <input type="file" class="form-control-file" id="projimage" name="projimage">
 
       </div>
 
@@ -60,7 +77,7 @@
              
               <label for="projnbr">Number</label>
     
-              <input type="text" class="form-control" id="projnbr">
+              <input type="text" class="form-control" id="projnbr" name="projnbr">
     
             </div>
     
@@ -68,7 +85,7 @@
     
                 <label for="projname">Project Name</label>
 
-                <input type="text" class="form-control" id="projname">
+                <input type="text" class="form-control" id="projname" name="projname">
 
             </div>
          
@@ -81,12 +98,11 @@
              
     <label for="projtype">Type</label>
     
-    <select id="projtype" class="form-control">
-     
+    <select id="projtype" class="form-control" name="projtype">
       <option selected>Choose...</option>
-     
-      <option>...</option>
-    
+      @foreach ($types as $type )
+      <option>{{ $type ->optionsvalue }}</option>
+      @endforeach
     </select>
 
   </div>
@@ -95,11 +111,12 @@
              
     <label for="projmaker">Maker</label>
     
-    <select id="projmaker" class="form-control">
+    <select id="projmaker" class="form-control" name="projmaker">
      
       <option selected>Choose...</option>
-     
-      <option>...</option>
+      @foreach ($makers as $maker )
+      <option>{{ $maker ->optionsvalue }}</option>
+      @endforeach
     
     </select>
 
@@ -109,11 +126,13 @@
              
     <label for="projprimetargetmarket">Prime Target</label>
     
-    <select id="projprimetargetmarket" class="form-control">
+    <select id="projprimetargetmarket" class="form-control" name="projprimetargetmarket">
      
       <option selected>Choose...</option>
      
-      <option>...</option>
+      @foreach ($primetargetmarkets as $primetargetmarket )
+      <option>{{ $primetargetmarket ->optionsvalue }}</option>
+      @endforeach
     
     </select>
 
@@ -127,11 +146,13 @@
                
       <label for="projstatus">Status</label>
       
-      <select id="projstatus" class="form-control">
+      <select id="projstatus" class="form-control" name="projstatus">
        
         <option selected>Choose...</option>
        
-        <option>...</option>
+        @foreach ($statuses as $status )
+        <option>{{ $status ->optionsvalue }}</option>
+        @endforeach
       
       </select>
   
@@ -141,7 +162,7 @@
                
       <label for="projopeneddate">Date Opened</label>
       
-      <input type="date" id="projopeneddate" class="form-control">
+      <input type="date" id="projopeneddate" class="form-control" name="projopeneddate">
        
          
     </div>
@@ -178,7 +199,7 @@
            
             <label for="proj1stordername">First Order Name</label>
   
-            <input type="text" class="form-control" id="proj1stordername">
+            <input type="text" class="form-control" id="proj1stordername" name="proj1stordername">
   
           </div>
 
@@ -187,7 +208,7 @@
   
               <label for="projunits">Units</label>{{-- integer --}}
 
-              <input type="number" class="form-control" id="projunits">
+              <input type="number" class="form-control" id="projunits" name="projunits">
 
           </div>
        
@@ -195,7 +216,7 @@
   
             <label for="proj1starrivaldate">1st Arrival Date</label>{{-- date --}}
 
-            <input type="date" class="form-control" id="proj1starrivaldate">
+            <input type="date" class="form-control" id="proj1starrivaldate" name="proj1starrivaldate">
 
         </div>
 
@@ -209,7 +230,7 @@
 
           <label for="projcomments">Comments</label>
 
-          <textarea id="projcomments" class="md-textarea form-control" rows="3"></textarea>
+          <textarea id="projcomments" class="md-textarea form-control" rows="3"  name="projcomments"></textarea>
         
         </div>
 
@@ -220,13 +241,13 @@
 
         <div class="form-row">
           <div class="form-group col-md-4">
-          <label for="projmaturityour">Our Maturity Level</label><span id="value1"  style="color:#007bff ;padding-left: 1%;" ></span> <span style="color:#007bff;" >%</span>
-          <input type="range" class="custom-range" id="projmaturityour"  oninput="DisplayChange1(this.value)">
+          <label for="projmaturityour">Our Maturity Level</label><span id="value1"  style="color:#007bff ;padding-left: 1%;" >50</span><span style="color:#007bff;" >%</span>
+          <input type="range" class="custom-range" id="projmaturityour" name="projmaturityour" oninput="DisplayChange1(this.value)">
         </div>
          
         <div class="form-group col-md-4">
-          <label for="projmaturitysupplier">Supplier's Maturity Level</label><span id="value2" style="color:#007bff ;padding-left: 1%;" ></span> <span style="color:#007bff;" >%</span>
-          <input type="range" class="custom-range" id="projmaturitysupplier"  oninput="DisplayChange2(this.value)">
+          <label for="projmaturitysupplier">Supplier's Maturity Level</label><span id="value2" style="color:#007bff ;padding-left: 1%;" >50</span><span style="color:#007bff;" >%</span>
+          <input type="range" class="custom-range" id="projmaturitysupplier" name="projmaturitysupplier" oninput="DisplayChange2(this.value)">
         </div>
 
 
@@ -262,7 +283,7 @@
   
             <label for="projpauseddate">Date Paused</label>{{-- date --}}
 
-            <input type="date" class="form-control" id="projpauseddate">
+            <input type="date" class="form-control" id="projpauseddate" name="projpauseddate">
 
         </div>
 
@@ -271,7 +292,7 @@
 
           <label for="projreasonpaused">Reason Paused</label>
 
-          <textarea id="projreasonpaused" class="md-textarea form-control" rows="3"></textarea>
+          <textarea id="projreasonpaused" class="md-textarea form-control" rows="3" name="projreasonpaused"></textarea>
         
         </div>
         </div>
@@ -312,7 +333,7 @@
   
             <label for="projrejecteddate">Date Rejected</label>{{-- date --}}
 
-            <input type="date" class="form-control" id="projrejecteddate">
+            <input type="date" class="form-control" id="projrejecteddate" name="projrejecteddate">
 
         </div>
 
@@ -321,7 +342,7 @@
 
           <label for="projreasonrejected">Reason Rejected</label>
 
-          <textarea id="projreasonrejected" class="md-textarea form-control" rows="3"></textarea>
+          <textarea id="projreasonrejected" class="md-textarea form-control" rows="3" name="projreasonrejected"></textarea>
         
         </div>
         </div>
@@ -341,7 +362,7 @@
 
 
  
-  <button type="submit" class="btn btn-primary">Submit</button>
+<button type="submit" class="btn btn-primary" >Create</button>
 
 
 </form>   

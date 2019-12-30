@@ -218,7 +218,7 @@ return [
 
         [
             'text'       => 'New Project',
-            'url'  => '/newproject',
+            'url'  => '/project/create',
             'icon' => 'far fa-plus-square',
         ],
     ],

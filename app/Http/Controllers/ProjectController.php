@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Project;
+use App\dropdnhelper;
+
 
 class ProjectController extends Controller
 {
@@ -25,7 +27,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('Projects.create',['types'=>dropdnhelper::where('labelname', 'type')->get(),'makers'=>dropdnhelper::where('labelname', 'maker')->get(), 'statuses'=>dropdnhelper::where('labelname', 'status')->get(), 'primetargetmarkets'=>dropdnhelper::where('labelname', 'primetargetmarket')->get() ]);
     }
 
     /**
@@ -36,7 +38,13 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+
+        $request->session()->flash('status','New Projected was created');
+        return view('Projects.create',['types'=>dropdnhelper::where('labelname', 'type')->get(),'makers'=>dropdnhelper::where('labelname', 'maker')->get(), 'statuses'=>dropdnhelper::where('labelname', 'status')->get(), 'primetargetmarkets'=>dropdnhelper::where('labelname', 'primetargetmarket')->get() ]);
+    
+
+
     }
 
     /**

@@ -36,7 +36,7 @@ Route::get('/open', function() {
 
 
 
-Route::get('/submit', 'ProjElementsController@imagevalidation')->name('submition')->middleware('auth');
 
 
-Route::resource('project', 'ProjectController')->only(['index', 'show']);
+
+Route::resource('project', 'ProjectController')->only(['index', 'show','create','store']);
