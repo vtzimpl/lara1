@@ -176,7 +176,7 @@ return [
     'menu' => [
        
        
-        ['header' => 'account_settings'],
+      /*   ['header' => 'account_settings'],
         [
             'text' => 'profile',
             'url'  => 'admin/settings',
@@ -187,7 +187,7 @@ return [
             'url'  => 'admin/settings',
             'icon' => 'fas fa-fw fa-lock',
         ],
-       
+       */
         ['header' => 'PROJECTS'],
 
         [
@@ -200,19 +200,22 @@ return [
 
         [
             'text'       => 'Completed',
+            'url'  => '/projectcomp',
             'icon_color' => 'green',
         ],
         [
             'text'       => 'Open',
-            'url'  => '/open',
+            'url'  => '/projectopen',
             'icon_color' => 'yellow',
         ],
         [
             'text'       => 'Paused',
+            'url'  => '/projectpaus',
             'icon_color' => 'aqua',
         ],
         [
             'text'       => 'Rejected',
+            'url'  => '/projectrej',
             'icon_color' => 'red',
         ],
 

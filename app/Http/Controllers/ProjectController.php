@@ -39,9 +39,11 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
         //dd($request->all());
+      // $ValidatedData=$request->validate(['projname'=>'required']);
+       $request->projimage->store('projimage');
 
-        $request->session()->flash('status','New Projected was created');
-        return view('Projects.create',['types'=>dropdnhelper::where('labelname', 'type')->get(),'makers'=>dropdnhelper::where('labelname', 'maker')->get(), 'statuses'=>dropdnhelper::where('labelname', 'status')->get(), 'primetargetmarkets'=>dropdnhelper::where('labelname', 'primetargetmarket')->get() ]);
+       $request->session()->flash('status','New Projected was created');
+       return view('Projects.create',['types'=>dropdnhelper::where('labelname', 'type')->get(),'makers'=>dropdnhelper::where('labelname', 'maker')->get(), 'statuses'=>dropdnhelper::where('labelname', 'status')->get(), 'primetargetmarkets'=>dropdnhelper::where('labelname', 'primetargetmarket')->get() ]);
     
 
 
@@ -55,7 +57,9 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
-        //
+    return view('Projects.show',['project'=>Project::find($id), 'types'=>dropdnhelper::where('labelname', 'type')->get(),'makers'=>dropdnhelper::where('labelname', 'maker')->get(), 'statuses'=>dropdnhelper::where('labelname', 'status')->get(), 'primetargetmarkets'=>dropdnhelper::where('labelname', 'primetargetmarket')->get() ]);
+    
+        //return view('Projects.show', ['id' => $id]);
     }
 
     /**

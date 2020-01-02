@@ -29,7 +29,7 @@
 
 
 
-@include('Projects.forms._form')
+@include('Projects.forms._showform')
 
 
 @stop

@@ -15,7 +15,7 @@
    
 <table id="tableopen" class="display" style="width:100%">
         <thead>
-            <tr>
+       <tr>
                 <th>Number</th>
                 <th>Project Name</th>
                 <th>Type</th>
@@ -30,13 +30,13 @@
                 @foreach ($projects as $project )
                 
            
-
+                 
             <tr>
-                <td>{{ $project ->projnbr }}</td>
-                <td>{{ $project ->projname }}</td>
-                <td>{{ $project ->projtype }}</td>
-                <td>{{ $project ->projmaker }}</td>
-                <td>{{ $project ->projstatus }}</td>
+                <td><a href="{{route('project.show', ['project'=>$project->id])}}" >{{ $project ->projnbr }}</a></td>
+                <td><a href="{{route('project.show', ['project'=>$project->id])}}" >{{ $project ->projname }}</a></td>
+                <td><a href="{{route('project.show', ['project'=>$project->id])}}" >{{ $project ->projtype }}</a></td>
+                <td><a href="{{route('project.show', ['project'=>$project->id])}}" >{{ $project ->projmaker }}</a></td>
+                <td><a href="{{route('project.show', ['project'=>$project->id])}}" >{{ $project ->projstatus }}</a></td>
                 <td></td>
             </tr>
             @endforeach
@@ -70,7 +70,14 @@
 @section('js')
     
     <script>$(document).ready(function() {
-    $('#tableopen').DataTable();
+    $('#tableopen').DataTable({
+        
+        "paging":   false,
+        "ordering": false,
+        "info":     false
+
+
+    });
 } );</script>
 
 @stop

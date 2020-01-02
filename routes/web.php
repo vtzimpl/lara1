@@ -39,4 +39,29 @@ Route::get('/open', function() {
 
 
 
-Route::resource('project', 'ProjectController')->only(['index', 'show','create','store']);
+Route::resource('project', 'ProjectController')->only(['index','show','create','store']);
+
+Route::get('projectcomp', function () {
+    return view('Projects.index',['projects'=>App\Project::where('projstatus', "Completed")
+     ->get()]);
+});
+
+Route::get('projectpend', function () {
+    return view('Projects.index',['projects'=>App\Project::where('projstatus', "Pending Com.")
+     ->get()]);
+});
+
+Route::get('projectopen', function () {
+    return view('Projects.index',['projects'=>App\Project::where('projstatus', "Open")
+     ->get()]);
+});
+
+Route::get('projectrej', function () {
+    return view('Projects.index',['projects'=>App\Project::where('projstatus', "Rejected")
+     ->get()]);
+});
+
+Route::get('projectpaus', function () {
+    return view('Projects.index',['projects'=>App\Project::where('projstatus', "Paused")
+     ->get()]);
+});
