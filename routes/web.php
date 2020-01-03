@@ -16,7 +16,7 @@
 
 Auth::routes();
 Route::get('/', function() {
-    return view('open');
+    return redirect('project');
 })->name('open')->middleware('auth');
 
 
