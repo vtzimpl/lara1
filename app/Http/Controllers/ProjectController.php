@@ -38,11 +38,13 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //dd($request->all());
-      // $ValidatedData=$request->validate(['projname'=>'required']);
-       $request->projimage->store('projimage');
+      // dd($request->all());
+       $ValidatedData=$request->validate(['projname'=>'required']);
+       $ValidatedData['projimage']=$request->projimage->store('projimage');
+$project=Project::create($ValidatedData);
+      //dd( $request->projimage->store('projimage'));
 
-       $request->session()->flash('status','New Projected was created');
+      $request->session()->flash('status','New Projected was created');
        return view('Projects.create',['types'=>dropdnhelper::where('labelname', 'type')->get(),'makers'=>dropdnhelper::where('labelname', 'maker')->get(), 'statuses'=>dropdnhelper::where('labelname', 'status')->get(), 'primetargetmarkets'=>dropdnhelper::where('labelname', 'primetargetmarket')->get() ]);
     
 

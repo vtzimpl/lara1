@@ -40,7 +40,7 @@ class CreateProjectsTable extends Migration
         $table->longText('projreasonrejected')->nullable(); //REASON REJECTED
         $table->date('projrejecteddate')->nullable(); //DATE REJECTED
         
-
+       
 
 
 

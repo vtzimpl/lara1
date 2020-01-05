@@ -1,15 +1,21 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css" />{{--aparaithta gia ajax--}}
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>  {{--aparaithta gia ajax--}}
 
 
-
-<form method="POST" action="#" enctype="multipart/form-data"> {{--method="POST" action="{{route(Projects.store)}}"--}}
+<form method="POST" action="{{route('project.store')}}" enctype="multipart/form-data"> {{--method="POST" action="{{route(Projects.store)}}"--}}
 @csrf
   <div class="container" style="padding-bottom:1%">
 
     <div class="row">
 
-    {{--<img src="http://fd-motors.nl/wp-content/uploads/2019/11/2fdmodelsv2-2.gif" class="rounded mx-auto d-block" alt="project image">--}}
 
-     <img id="image_preview_container" class="rounded mx-auto d-block" src="http://localhost/lara1/public/storage/{{$project ->projimage}}" alt="Project image" style="max-height: 250px;">
+    
+
+
+
+<img id="image_preview_container" class="rounded mx-auto d-block" src="{{ asset('public/images/image-preview.png') }}"  alt="preview image" style="max-height: 150px;">
+
+     {{-- <img src="http://fd-motors.nl/wp-content/uploads/2019/11/2fdmodelsv2-2.gif" class="rounded mx-auto d-block" alt="project image">--}}
 
     </div>
 
@@ -17,7 +23,7 @@
 
       <div class="form-group">
 
-        <label for="projimage">Upload a photo</label>
+        <label for="projimage">Upload image</label>
 
         <input type="file" class="form-control-file" id="projimage" name="projimage"  type="file">
 
@@ -54,7 +60,7 @@
              
               <label for="projnbr">Number</label>
     
-              <input type="text" class="form-control" id="projnbr" name="projnbr" value="{{ $project ->projnbr }}">
+              <input type="text" class="form-control" id="projnbr" name="projnbr">
     
             </div>
     
@@ -62,7 +68,7 @@
     
                 <label for="projname">Project Name</label>
 
-                <input type="text" class="form-control" id="projname" name="projname" value="{{ $project ->projname }}">
+                <input type="text" class="form-control" id="projname" name="projname">
 
             </div>
          
@@ -76,7 +82,7 @@
     <label for="projtype">Type</label>
     
     <select id="projtype" class="form-control" name="projtype">
-      <option selected>{{ $project ->projtype }}</option>
+      <option selected>Choose...</option>
       @foreach ($types as $type )
       <option>{{ $type ->optionsvalue }}</option>
       @endforeach
@@ -90,7 +96,7 @@
     
     <select id="projmaker" class="form-control" name="projmaker">
      
-      <option selected>{{ $project ->projmaker }}</option>
+      <option selected>Choose...</option>
       @foreach ($makers as $maker )
       <option>{{ $maker ->optionsvalue }}</option>
       @endforeach
@@ -105,7 +111,7 @@
     
     <select id="projprimetargetmarket" class="form-control" name="projprimetargetmarket">
      
-      <option selected>{{ $project ->projprimetargetmarket }}</option>
+      <option selected>Choose...</option>
      
       @foreach ($primetargetmarkets as $primetargetmarket )
       <option>{{ $primetargetmarket ->optionsvalue }}</option>
@@ -125,7 +131,7 @@
       
       <select id="projstatus" class="form-control" name="projstatus">
        
-        <option selected>{{ $project ->projstatus }}</option>
+        <option selected>Choose...</option>
        
         @foreach ($statuses as $status )
         <option>{{ $status ->optionsvalue }}</option>
@@ -134,12 +140,12 @@
       </select>
   
     </div>
-    
+      
     <div class="form-group col-md-5">
                
       <label for="projopeneddate">Date Opened</label>
-  
-      <input type="date" id="projopeneddate" value = {{ \Carbon\Carbon::parse($project ->projopeneddate)->format('Y-m-d')}} class="form-control" name="projopeneddate">
+      
+      <input type="date" id="projopeneddate" class="form-control" name="projopeneddate">
        
          
     </div>
@@ -176,7 +182,7 @@
            
             <label for="proj1stordername">First Order Name</label>
   
-            <input type="text" class="form-control" id="proj1stordername" name="proj1stordername"  value="{{ $project ->proj1stordername }}">
+            <input type="text" class="form-control" id="proj1stordername" name="proj1stordername">
   
           </div>
 
@@ -185,7 +191,7 @@
   
               <label for="projunits">Units</label>{{-- integer --}}
 
-              <input type="number" class="form-control" id="projunits" name="projunits" value="{{ $project ->projunits }}">
+              <input type="number" class="form-control" id="projunits" name="projunits">
 
           </div>
        
@@ -193,7 +199,7 @@
   
             <label for="proj1starrivaldate">1st Arrival Date</label>{{-- date --}}
 
-            <input type="date" class="form-control" id="proj1starrivaldate" value = {{ \Carbon\Carbon::parse($project ->proj1starrivaldate)->format('Y-m-d')}} name="proj1starrivaldate">
+            <input type="date" class="form-control" id="proj1starrivaldate" name="proj1starrivaldate">
 
         </div>
 
@@ -207,7 +213,7 @@
 
           <label for="projcomments">Comments</label>
 
-          <textarea id="projcomments" class="md-textarea form-control" rows="3"  name="projcomments">{{ $project ->projcomments }}</textarea>
+          <textarea id="projcomments" class="md-textarea form-control" rows="3"  name="projcomments"></textarea>
         
         </div>
 
@@ -218,13 +224,13 @@
 
         <div class="form-row">
           <div class="form-group col-md-4">
-          <label for="projmaturityour">Our Maturity Level</label><span id="value1"  style="color:#007bff ;padding-left: 1%;" ></span>{{ $project ->projmaturityour }}<span style="color:#007bff;" >%</span>
-          <input type="range" class="custom-range" id="projmaturityour" name="projmaturityour" value="{{ $project ->projmaturityour }}" oninput="DisplayChange1(this.value)">
+          <label for="projmaturityour">Our Maturity Level</label><span id="value1"  style="color:#007bff ;padding-left: 1%;" >50</span><span style="color:#007bff;" >%</span>
+          <input type="range" class="custom-range" id="projmaturityour" name="projmaturityour" oninput="DisplayChange1(this.value)">
         </div>
          
         <div class="form-group col-md-4">
-          <label for="projmaturitysupplier">Supplier's Maturity Level</label><span id="value2" style="color:#007bff ;padding-left: 1%;" >{{ $project ->projmaturitysupplier }}</span><span style="color:#007bff;" >%</span>
-          <input type="range" class="custom-range" id="projmaturitysupplier" name="projmaturitysupplier" value="{{ $project ->projmaturitysupplier }}" oninput="DisplayChange2(this.value)">
+          <label for="projmaturitysupplier">Supplier's Maturity Level</label><span id="value2" style="color:#007bff ;padding-left: 1%;" >50</span><span style="color:#007bff;" >%</span>
+          <input type="range" class="custom-range" id="projmaturitysupplier" name="projmaturitysupplier" oninput="DisplayChange2(this.value)">
         </div>
 
 
@@ -260,7 +266,7 @@
   
             <label for="projpauseddate">Date Paused</label>{{-- date --}}
 
-            <input type="date" class="form-control" id="projpauseddate" value = {{ \Carbon\Carbon::parse($project ->projpauseddate)->format('Y-m-d')}} name="projpauseddate">
+            <input type="date" class="form-control" id="projpauseddate" name="projpauseddate">
 
         </div>
 
@@ -269,7 +275,7 @@
 
           <label for="projreasonpaused">Reason Paused</label>
 
-          <textarea id="projreasonpaused" class="md-textarea form-control" rows="3" name="projreasonpaused">{{ $project ->projreasonpaused }}</textarea>
+          <textarea id="projreasonpaused" class="md-textarea form-control" rows="3" name="projreasonpaused"></textarea>
         
         </div>
         </div>
@@ -310,7 +316,7 @@
   
             <label for="projrejecteddate">Date Rejected</label>{{-- date --}}
 
-            <input type="date" class="form-control" id="projrejecteddate" value = {{ \Carbon\Carbon::parse($project ->projrejecteddate)->format('Y-m-d')}} name="projrejecteddate">
+            <input type="date" class="form-control" id="projrejecteddate" name="projrejecteddate">
 
         </div>
 
@@ -319,7 +325,7 @@
 
           <label for="projreasonrejected">Reason Rejected</label>
 
-          <textarea id="projreasonrejected" class="md-textarea form-control" rows="3" name="projreasonrejected">{{ $project ->projreasonrejected }}</textarea>
+          <textarea id="projreasonrejected" class="md-textarea form-control" rows="3" name="projreasonrejected"></textarea>
         
         </div>
         </div>
@@ -339,8 +345,54 @@
 
 
  
-<button type="submit" class="btn btn-primary" >Update</button>
+<button type="submit" class="btn btn-primary" >Create</button>
 
 
 </form>   
+{{--aparaithta gia ajax--}}
+<script type="text/javascript">
+     
+  $(document).ready(function (e) {
 
+      $.ajaxSetup({
+          headers: {
+              'X-CSRF-TOKEN': $('meta[projimage="csrf-token"]').attr('content')
+          }
+      });
+
+      $('#projimage').change(function(){
+        
+          let reader = new FileReader();
+          reader.onload = (e) => { 
+            $('#image_preview_container').attr('src', e.target.result); 
+          }
+          reader.readAsDataURL(this.files[0]); 
+
+      });
+
+      $('#upload_image_form').submit(function(e) {
+          e.preventDefault();
+
+          var formData = new FormData(this);
+
+          $.ajax({
+              type:'POST',
+              url: "{{ url('save-photo')}}",
+              data: formData,
+              cache:false,
+              contentType: false,
+              processData: false,
+              success: (data) => {
+                  this.reset();
+                  alert('Image has been uploaded successfully');
+              },
+              error: function(data){
+                  console.log(data);
+              }
+          });
+      });
+  });
+
+</script>
+
+{{--aparaithta gia ajax--}}
