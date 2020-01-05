@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Project;
 use App\dropdnhelper;
-use App\Http\Requests\StoreProject;
+//use App\Http\Requests\StoreProject;
 
 class ProjectController extends Controller
 {
@@ -36,12 +36,13 @@ class ProjectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProject $request)
+    public function store(Request $request)
     {
       // dd($request->all());
-       $ValidatedData=$request->validated();//to validation ginetai sto StoreProject mesa sta Requests
+       $ValidatedData=$request->validate(['projname'=>'required']);
        $ValidatedData['projimage']=$request->projimage->store('projimage');
-       $project=Project::create($ValidatedData);  //mazikh ekxwrisi
+       $project=Project::create($ValidatedData);
+      //dd( $request->projimage->store('projimage'));
      
       $id=$project->id;
       $request->session()->flash('status','New Projected was created');
@@ -83,14 +84,9 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreProject $request, $id)
+    public function update(Request $request, $id)
     {
-        $project = Project::findOrFail($id);
-        $validatedData = $request->validated();
-        $project->fill($validatedData);
-        $project->save();
-        $request->session()->flash('status', 'Blog post was updated!');
-        return redirect()->route('project.show', ['project' => $project->id]);
+        
     }
 
     /**

@@ -11,8 +11,11 @@ class CreateProjectsTable extends Migration
      *
      * @return void
      */
+
+     
     public function up()
     {
+
         Schema::create('projects', function (Blueprint $table) {
         $table->bigIncrements('id');
         $table->timestamps();
@@ -56,4 +59,12 @@ class CreateProjectsTable extends Migration
     {
         Schema::dropIfExists('projects');
     }
+
+
+
+
+
+
+
+
 }

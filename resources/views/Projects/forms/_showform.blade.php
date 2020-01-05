@@ -1,8 +1,14 @@
 
 
 
-<form method="POST" action="#" enctype="multipart/form-data"> {{--method="POST" action="{{route(Projects.store)}}"--}}
+<form method="POST" action="{{ route('project.update', ['project' => $project->id]) }}" enctype="multipart/form-data"> {{--method="POST" action="{{route(Projects.store)}}"--}}
 @csrf
+
+@method('PUT')
+
+
+
+
   <div class="container" style="padding-bottom:1%">
 
     <div class="row">

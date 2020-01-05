@@ -39,7 +39,7 @@ Route::get('/open', function() {
 
 
 
-Route::resource('project', 'ProjectController')->only(['index','show','create','store']);
+Route::resource('project', 'ProjectController')->only(['index','show','create','store','update']);
 
 Route::get('projectcomp', function () {
     return view('Projects.index',['projects'=>App\Project::where('projstatus', "Completed")
