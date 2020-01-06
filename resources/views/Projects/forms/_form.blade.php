@@ -10,8 +10,8 @@
     
 
 
+ <img id="image_preview_container" class="rounded mx-auto d-block" src="" alt="Project image" style="max-height: 250px;">
 
-<img id="image_preview_container" class="rounded mx-auto d-block" src="{{ asset('public/images/image-preview.png') }}"  alt="Project image" style="max-height: 150px;">
 
      {{-- <img src="http://fd-motors.nl/wp-content/uploads/2019/11/2fdmodelsv2-2.gif" class="rounded mx-auto d-block" alt="project image">--}}
 

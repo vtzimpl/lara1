@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Project;
 use App\dropdnhelper;
 use App\Http\Requests\StoreProject;
-
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 class ProjectController extends Controller
 {
     /**
@@ -40,9 +41,13 @@ class ProjectController extends Controller
     {
       // dd($request->all());
        $ValidatedData=$request->validated();//to validation ginetai sto StoreProject mesa sta Requests
-       $ValidatedData['projimage']=$request->projimage->store('projimage');
-       $project=Project::create($ValidatedData);  //mazikh ekxwrisi
-     
+       if ($request->hasFile('projimage')) {
+          //$ValidatedData['projimage']=$request->projimage->store('projimage');
+          $path = $request->file('projimage')->store('projimage');
+          $ValidatedData['projimage']=$path;
+       }
+       
+      $project=Project::create($ValidatedData);  //mazikh ekxwrisi
       $id=$project->id;
       $request->session()->flash('status','New Projected was created');
       //return view('Projects.create',['types'=>dropdnhelper::where('labelname', 'type')->get(),'makers'=>dropdnhelper::where('labelname', 'maker')->get(), 'statuses'=>dropdnhelper::where('labelname', 'status')->get(), 'primetargetmarkets'=>dropdnhelper::where('labelname', 'primetargetmarket')->get() ]);
@@ -86,11 +91,16 @@ class ProjectController extends Controller
     public function update(StoreProject $request, $id)
     {
         $project = Project::findOrFail($id);
-        $validatedData = $request->validated();
-        $project->fill($validatedData);
-        $project->save();
-        $request->session()->flash('status', 'Blog post was updated!');
-        return redirect()->route('project.show', ['project' => $project->id]);
+        $ValidatedData = $request->validated();
+        if ($request->hasFile('projimage')) { //an ginei POST oxi an emfanizetai
+            $path = $request->file('projimage')->store('projimage');
+            $ValidatedData['projimage']=$path;
+        }
+        //na ginoun delete ta proigoumena
+         $project->fill($ValidatedData);
+         $project->save();
+         $request->session()->flash('status', 'Project was updated!');
+       return redirect()->route('project.show', ['project' => $project->id]);
     }
 
     /**

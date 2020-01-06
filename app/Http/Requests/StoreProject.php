@@ -25,6 +25,7 @@ class StoreProject extends FormRequest
     {
         return['projname'=>'required',
         'projnbr'=>'required',
+        'projimage'=>'mimes:jpeg,bmp,png,jpg,gif|max:1000',
         'projtype'=>'',
         'projstatus'=>'',
         'projmaker'=>'',
@@ -44,8 +45,8 @@ class StoreProject extends FormRequest
         'projpauseddate'=>'',
         'projreasonpaused'=>'',
         'projreasonrejected'=>'',
-        'projrejecteddate'
-    
+        'projrejecteddate'=>'',
+        
     
     ];
     }
