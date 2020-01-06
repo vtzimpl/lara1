@@ -2,7 +2,7 @@
 @extends('adminlte::page')
 @section('title', 'NiP - Nipponia Projects')
 @section('content_header')
-    <h1>New Project</h1>
+    <h1>{{ $project ->projname }}</h1>
 @stop
 @section('content')
 
@@ -22,7 +22,7 @@
   </div>
 @else
   <div class="alert alert-primary" role="alert">
-  New Nipponia Project
+  Update Project
   </div>
 @endif
 {{-- flash messages --}}
