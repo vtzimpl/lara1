@@ -15,7 +15,7 @@
 
     {{--<img src="http://fd-motors.nl/wp-content/uploads/2019/11/2fdmodelsv2-2.gif" class="rounded mx-auto d-block" alt="project image">--}}
 
-     <img id="image_preview_container" class="rounded mx-auto d-block" src="http://localhost/lara1/public/storage/{{$project ->projimage}}" alt="Project image" style="max-height: 250px;">
+     <img id="image_preview_container" class="rounded mx-auto d-block" src={{env('APP_URL')}}storage/{{$project ->projimage}} alt="Project image" style="max-height: 250px;">
 
     </div>
 
