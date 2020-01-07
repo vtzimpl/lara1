@@ -23,7 +23,7 @@
 
       <div class="form-group">
 
-        <label for="projimage">Upload a photo</label>
+        <label for="projimage">Upload a photo (max file size 1MB) </label>
 
         <input type="file" class="form-control-file" id="projimage" name="projimage"  type="file">
 
