@@ -19,7 +19,10 @@ Route::get('/', function() {
     return redirect('project');
 })->name('open')->middleware('auth');
 
-
+Auth::routes();
+Route::get('/home', function() {
+    return redirect('project');
+})->name('open')->middleware('auth');
 
 Auth::routes();
 Route::get('/newproject', function() {
